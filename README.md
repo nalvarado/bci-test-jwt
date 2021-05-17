@@ -16,6 +16,28 @@ Una vez descargada las fuentes de debe ejecutar en consola:
 gradlew clean build
 ```
 
+## Url del servicio
+
+POST --> localhost:8080/user/create
+
+```json
+{
+    "name": "3dssdds333",
+    "email": "nalvaradov8dsds@gmail.com",
+    "password": "Pjsfdsds3",
+    "phones": [
+        {
+            "cityCode": "01",
+            "countryCode": "56",
+            "number": "+949357232"
+        }
+    ]
+}
+```
+
+
+
+
 ## Modelo de base de datos
 Se incluye foto del modelo de base de datos
 
