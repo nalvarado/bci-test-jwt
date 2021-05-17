@@ -33,7 +33,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private JwtAuthenticationEntryPoint unauthorizedHandler;
 
-	
+		
 	@Bean
 	@Override
 	 public AuthenticationManager authenticationManagerBean() throws Exception {
@@ -63,7 +63,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/", "/favicon.ico", "/**/*.png", "/**/*.gif", "/**/*.svg", "/**/*.jpg", "/**/*.html",
 						"/**/*.css", "/**/*.js")
 				.permitAll()
-				.antMatchers("/console/**", 
+				.antMatchers("/h2-console/**", 
 						"/auth/**",
 						"/user/create/**")
 				.permitAll().anyRequest().authenticated();

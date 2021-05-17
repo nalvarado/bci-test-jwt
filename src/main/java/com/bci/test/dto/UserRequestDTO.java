@@ -28,7 +28,7 @@ public class UserRequestDTO implements Serializable {
 	private String email;
 
 	@NotBlank(message = "es obligatorio")
-	@Pattern(regexp = "^(?=\\w*\\d)(?=\\w*[A-Z])(?=\\w*[a-z])\\S{8,16}$", message = "La contraseña debe tener al entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula y al menos una mayúscula. ")
+	@Pattern(regexp = "^(?=\\w*\\d)(?=\\w*[A-Z])(?=\\w*[a-z])\\S{8,16}$", message = "Debe al menos tenes 1 digito, 1 mayuscula ")
 	private String password;
 	private Date create;
 	private Date modified;

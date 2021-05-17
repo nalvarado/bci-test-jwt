@@ -29,12 +29,6 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class GlobalExceptionHandler {
 
-	/**
-	 * Proporciona manejo de excepciones a lo largo de este servicio.
-	 *
-	 * @param ex      The target exception
-	 * @param request The current request
-	 */
 	@ExceptionHandler({ UserException.class, ContentNotAllowedException.class, MethodArgumentNotValidException.class })
 	@Nullable
 	public final ResponseEntity<ApiError> handleException(Exception ex, WebRequest request) {
@@ -73,14 +67,6 @@ public class GlobalExceptionHandler {
 		}
 	}
 
-	/**
-	 * Personalizar la respuesta para handleNotFoundException.
-	 *
-	 * @param ex      The exception
-	 * @param headers The headers to be written to the response
-	 * @param status  The selected response status
-	 * @return a {@code ResponseEntity} instance
-	 */
 	protected ResponseEntity<ApiError> handleCommonException(Exception ex, HttpHeaders headers, HttpStatus status,
 			WebRequest request) {
 		List<String> errors = Collections.singletonList(ex.getMessage());
@@ -93,16 +79,6 @@ public class GlobalExceptionHandler {
 			return handleExceptionInternal(ex, new ApiError(status, errors.get(0)), headers, status, request);
 	}
 
-	/**
-	 * Personalizar la respuesta para handleNotFoundException.
-	 * 
-	 * @param ex      The exception
-	 * @param headers The headers to be written to the response
-	 * @param status  The selected response status
-	 * @param request
-	 * @param errors
-	 * @return a {@code ResponseEntity} instance
-	 */
 	protected ResponseEntity<ApiError> handleCommonException(Exception ex, HttpHeaders headers, HttpStatus status,
 			WebRequest request, List<String> errors) {
 		log.error("[handleCommonException]HttpHeaders --> " + headers.toString());
@@ -112,14 +88,6 @@ public class GlobalExceptionHandler {
 		return handleExceptionInternal(ex, new ApiError(status, errors), headers, status, request);
 	}
 
-	/**
-	 * Personalizar la respuesta paraContentNotAllowedException.
-	 *
-	 * @param ex      The exception
-	 * @param headers The headers to be written to the response
-	 * @param status  The selected response status
-	 * @return a {@code ResponseEntity} instance
-	 */
 	protected ResponseEntity<ApiError> handleContentNotAllowedException(ContentNotAllowedException ex,
 			HttpHeaders headers, HttpStatus status, WebRequest request) {
 		List<String> errorMessages = ex.getErrors().stream()
@@ -131,20 +99,6 @@ public class GlobalExceptionHandler {
 		return handleExceptionInternal(ex, new ApiError(status, errorMessages), headers, status, request);
 	}
 
-	/**
-	 * Personalizacion de "response body" de todos los tipos de excepción.
-	 *
-	 * <p>
-	 * La implementación predeterminada establece el
-	 * {@link WebUtils#ERROR_EXCEPTION_ATTRIBUTE} solicitar atributo y crea un
-	 * {@link ResponseEntity} de lo dado body, headers, and status.
-	 *
-	 * @param ex      The exception
-	 * @param body    The body for the response
-	 * @param headers The headers for the response
-	 * @param status  The response status
-	 * @param request The current request
-	 */
 	protected ResponseEntity<ApiError> handleExceptionInternal(Exception ex, @Nullable ApiError body,
 			HttpHeaders headers, HttpStatus status, WebRequest request) {
 		if (HttpStatus.INTERNAL_SERVER_ERROR.equals(status)) {
