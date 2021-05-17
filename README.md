@@ -19,8 +19,7 @@ gradlew clean build
 ## Modelo de base de datos
 Se incluye foto del modelo de base de datos
 
-<img src="/modelo/modelo.png" alt="modelo de datos/>
-
+![img](https://github.com/nalvarado/bci-test-jwt/blob/main/modelo/modelo.png)
 
 
 ## Pre-requisitos 
